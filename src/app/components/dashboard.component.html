@@ -1,0 +1,65 @@
+<div class="header">
+  <h3>Foi radionica</h3>
+</div>
+
+<div class="dashboard-section">
+  <!-- Add new car form section --> 
+  <div class="add-new-car-section">
+    <form [formGroup]="carFormGroup">
+      <mat-label>Brand</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="brand">
+      </mat-form-field>
+  
+      <mat-label>Model</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="model">
+      </mat-form-field> <!-- TODO: REMOVE MODEL FORM FIELD FOR TASK LEVEL 1 -->
+  
+      <mat-label>Kilometers</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="km">
+      </mat-form-field>
+  
+      <mat-label>First registration</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput [matDatepicker]="picker" formControlName="firstRegistration">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  
+      <mat-label>Vin number</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="vin">
+      </mat-form-field>
+  
+      <button mat-raised-button 
+              color="primary"
+              (click)="addNewVehicle()">
+        Add new vehicle
+      </button> <!-- TODO: REMOVE COLOR FOR TASK LEVEL 1 -->
+    </form>
+  </div>
+
+  <!-- Cars section -->
+  <div class="cars-section">
+
+    <div class="car" *ngFor="let car of cars">
+      <h2>{{ car.brand }}<span class="model">{{ car.model }}</span></h2>
+      <div class="car-image">
+        <img src="assets/car-image.png">
+      </div>
+      <p><span>Kilometers: </span>{{ car.km }}</p> <!-- TODO: REMOVE car.km FOR TASK LEVEL 2 -->
+      <p><span>First registration: </span>{{ car.firstRegistration | date: 'dd.MM.yyyy' }}</p>
+      <p><span>Vin number: </span>{{ car.vin }}</p> <!-- TODO: REMOVE car.vin FOR TASK LEVEL 2 -->
+      <button mat-raised-button 
+              color="warn" 
+              class="delete-button"
+              (click)="deleteVehicle(car.id)"> <!-- TODO: REMOVE (click)="deleteVehicle(car.id)" FOR TASK LEVEL 3 -->
+        Delete
+      </button>
+    </div>
+
+  </div>
+</div>
+
